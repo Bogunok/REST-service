@@ -2,7 +2,7 @@ const Star = require("../models/starModel");
 
 class StarDao {
     async getAll() {
-        return await Star.find();
+        return await Star.find({}, "_id name type mass radius distanceFromEarth");
     }
 
     async getById(id) {

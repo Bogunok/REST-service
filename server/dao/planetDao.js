@@ -2,11 +2,11 @@ const Planet = require("../models/planetModel");
 
 class PlanetDao {
     async getAll() {
-        return await Planet.find();
+        return await Planet.find({}, "_id name type mass radius distanceFromSun");
     }
 
     async getById(id) {
-        return await Planet.findById(id);
+        return Planet.findById(id);
     }
 
     async create(data) {
