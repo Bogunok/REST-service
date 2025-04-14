@@ -172,155 +172,210 @@ const AdminPanel = ({ setLoggedInUser }) => {
     };
 
     return (
-        <div>
-            <h1>Admin Panel</h1>
-            <h2>Add Planet</h2>
+        <div className="container mt-5">
+            <h1 className="mb-4">Admin Panel</h1>
+
+            <h2 className="mt-3">Add Planet</h2>
             <form onSubmit={handlePlanetSubmit}>
-                <input type="text" name="name" placeholder="Name" value={planetFormData.name} onChange={handlePlanetInputChange} required />
-                <input type="text" name="type" placeholder="Type" value={planetFormData.type} onChange={handlePlanetInputChange} required />
-                <input type="number" name="mass" placeholder="Mass" value={planetFormData.mass} onChange={handlePlanetInputChange} required />
-                <input type="number" name="radius" placeholder="Radius" value={planetFormData.radius} onChange={handlePlanetInputChange} required />
-                <input type="number" name="distanceFromSun" placeholder="Distance from Sun" value={planetFormData.distanceFromSun} onChange={handlePlanetInputChange} required />
-                <button type="submit">Add Planet</button>
+                <div className="mb-3">
+                    <input type="text" className="form-control" name="name" placeholder="Name" value={planetFormData.name} onChange={handlePlanetInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="text" className="form-control" name="type" placeholder="Type" value={planetFormData.type} onChange={handlePlanetInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="number" className="form-control" name="mass" placeholder="Mass" value={planetFormData.mass} onChange={handlePlanetInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="number" className="form-control" name="radius" placeholder="Radius" value={planetFormData.radius} onChange={handlePlanetInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="number" className="form-control" name="distanceFromSun" placeholder="Distance from Sun" value={planetFormData.distanceFromSun} onChange={handlePlanetInputChange} required />
+                </div>
+                <button type="submit" className="btn btn-primary">Add Planet</button>
             </form>
 
-            <h2>Add Star</h2>
+            <h2 className="mt-4">Add Star</h2>
             <form onSubmit={handleStarSubmit}>
-                <input type="text" name="name" placeholder="Name" value={starFormData.name} onChange={handleStarInputChange} required />
-                <input type="text" name="type" placeholder="Type" value={starFormData.type} onChange={handleStarInputChange} required />
-                <input type="number" name="mass" placeholder="Mass" value={starFormData.mass} onChange={handleStarInputChange} required />
-                <input type="number" name="radius" placeholder="Radius" value={starFormData.radius} onChange={handleStarInputChange} required />
-                <input type="number" name="distanceFromEarth" placeholder="Distance from Earth" value={starFormData.distanceFromEarth} onChange={handleStarInputChange} required />
-                <button type="submit">Add Star</button>
+                <div className="mb-3">
+                    <input type="text" className="form-control" name="name" placeholder="Name" value={starFormData.name} onChange={handleStarInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="text" className="form-control" name="type" placeholder="Type" value={starFormData.type} onChange={handleStarInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="number" className="form-control" name="mass" placeholder="Mass" value={starFormData.mass} onChange={handleStarInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="number" className="form-control" name="radius" placeholder="Radius" value={starFormData.radius} onChange={handleStarInputChange} required />
+                </div>
+                <div className="mb-3">
+                    <input type="number" className="form-control" name="distanceFromEarth" placeholder="Distance from Earth" value={starFormData.distanceFromEarth} onChange={handleStarInputChange} required />
+                </div>
+                <button type="submit" className="btn btn-primary">Add Star</button>
             </form>
 
-            <h2>View/Edit/Delete Planets</h2>
-            <div>
+            <h2 className="mt-4">View/Edit/Delete Planets</h2>
+            <div className="row row-cols-1 row-cols-md-2 g-4">
                 {planets.map((planet) => (
-                    <div key={planet._id} className="card">
-                        <div className="card-body">
-                            {editingPlanetId === planet._id ? (
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={editedPlanetData.name || ""}
-                                        onChange={handleEditPlanetInputChange}
-                                        placeholder="Name"
-                                        required
-                                    />
-                                    <input
-                                        type="text"
-                                        name="type"
-                                        value={editedPlanetData.type || ""}
-                                        onChange={handleEditPlanetInputChange}
-                                        placeholder="Type"
-                                        required
-                                    />
-                                    <input
-                                        type="number"
-                                        name="mass"
-                                        value={editedPlanetData.mass || ""}
-                                        onChange={handleEditPlanetInputChange}
-                                        placeholder="Mass"
-                                        required
-                                    />
-                                    <input
-                                        type="number"
-                                        name="radius"
-                                        value={editedPlanetData.radius || ""}
-                                        onChange={handleEditPlanetInputChange}
-                                        placeholder="Radius"
-                                        required
-                                    />
-                                    <input
-                                        type="number"
-                                        name="distanceFromSun"
-                                        value={editedPlanetData.distanceFromSun || ""}
-                                        onChange={handleEditPlanetInputChange}
-                                        placeholder="Distance from Sun"
-                                        required
-                                    />
-                                    <button onClick={() => handleSavePlanet(planet._id)}>Save</button>
-                                    <button onClick={() => setEditingPlanetId(null)}>Cancel</button>
-                                </div>
-                            ) : (
-                                <div>
-                                    <h5>{planet.name}</h5>
-                                    <p>Type: {planet.type}</p>
-                                    <p>Mass: {planet.mass}</p>
-                                    <p>Radius: {planet.radius}</p>
-                                    <p>Distance from Sun: {planet.distanceFromSun}</p>
-                                    <button onClick={() => enablePlanetEdit(planet)}>Edit</button>
-                                    <button onClick={() => handlePlanetDelete(planet._id)}>Delete</button>
-                                </div>
-                            )}
+                    <div key={planet._id} className="col">
+                        <div className="card">
+                            <div className="card-body">
+                                {editingPlanetId === planet._id ? (
+                                    <div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="name"
+                                                value={editedPlanetData.name || ""}
+                                                onChange={handleEditPlanetInputChange}
+                                                placeholder="Name"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="type"
+                                                value={editedPlanetData.type || ""}
+                                                onChange={handleEditPlanetInputChange}
+                                                placeholder="Type"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="mass"
+                                                value={editedPlanetData.mass || ""}
+                                                onChange={handleEditPlanetInputChange}
+                                                placeholder="Mass"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="radius"
+                                                value={editedPlanetData.radius || ""}
+                                                onChange={handleEditPlanetInputChange}
+                                                placeholder="Radius"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="distanceFromSun"
+                                                value={editedPlanetData.distanceFromSun || ""}
+                                                onChange={handleEditPlanetInputChange}
+                                                placeholder="Distance from Sun"
+                                                required
+                                            />
+                                        </div>
+                                        <button onClick={() => handleSavePlanet(planet._id)} className="btn btn-sm btn-success me-2">Save</button>
+                                        <button onClick={() => setEditingPlanetId(null)} className="btn btn-sm btn-secondary">Cancel</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <h5 className="card-title">{planet.name}</h5>
+                                        <p className="card-text">Type: {planet.type}</p>
+                                        <p className="card-text">Mass: {planet.mass}</p>
+                                        <p className="card-text">Radius: {planet.radius}</p>
+                                        <p className="card-text">Distance from Sun: {planet.distanceFromSun}</p>
+                                        <button onClick={() => enablePlanetEdit(planet)} className="btn btn-sm btn-primary me-2">Edit</button>
+                                        <button onClick={() => handlePlanetDelete(planet._id)} className="btn btn-sm btn-danger">Delete</button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))}
             </div>
 
-            <h2>View/Edit/Delete Stars</h2>
-            <div>
+            <h2 className="mt-4">View/Edit/Delete Stars</h2>
+            <div className="row row-cols-1 row-cols-md-2 g-4">
                 {stars.map((star) => (
-                    <div key={star._id} className="card">
-                        <div className="card-body">
-                            {editingStarId === star._id ? (
-                                <div>
-                                    <input
-                                        type="text"
-                                        name="name"
-                                        value={editedStarData.name || ""}
-                                        onChange={handleEditStarInputChange}
-                                        placeholder="Name"
-                                        required
-                                    />
-                                    <input
-                                        type="text"
-                                        name="type"
-                                        value={editedStarData.type || ""}
-                                        onChange={handleEditStarInputChange}
-                                        placeholder="Type"
-                                        required
-                                    />
-                                    <input
-                                        type="number"
-                                        name="mass"
-                                        value={editedStarData.mass || ""}
-                                        onChange={handleEditStarInputChange}
-                                        placeholder="Mass"
-                                        required
-                                    />
-                                    <input
-                                        type="number"
-                                        name="radius"
-                                        value={editedStarData.radius || ""}
-                                        onChange={handleEditStarInputChange}
-                                        placeholder="Radius"
-                                        required
-                                    />
-                                    <input
-                                        type="number"
-                                        name="distanceFromEarth"
-                                        value={editedStarData.distanceFromEarth || ""}
-                                        onChange={handleEditStarInputChange}
-                                        placeholder="Distance from Earth"
-                                        required
-                                    />
-                                    <button onClick={() => handleSaveStar(star._id)}>Save</button>
-                                    <button onClick={() => setEditingStarId(null)}>Cancel</button>
-                                </div>
-                            ) : (
-                                <div>
-                                    <h5>{star.name}</h5>
-                                    <p>Type: {star.type}</p>
-                                    <p>Mass: {star.mass}</p>
-                                    <p>Radius: {star.radius}</p>
-                                    <p>Distance from Earth: {star.distanceFromEarth}</p>
-                                    <button onClick={() => enableStarEdit(star)}>Edit</button>
-                                    <button onClick={() => handleStarDelete(star._id)}>Delete</button>
-                                </div>
-                            )}
+                    <div key={star._id} className="col">
+                        <div className="card">
+                            <div className="card-body">
+                                {editingStarId === star._id ? (
+                                    <div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="name"
+                                                value={editedStarData.name || ""}
+                                                onChange={handleEditStarInputChange}
+                                                placeholder="Name"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="text"
+                                                className="form-control"
+                                                name="type"
+                                                value={editedStarData.type || ""}
+                                                onChange={handleEditStarInputChange}
+                                                placeholder="Type"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="mass"
+                                                value={editedStarData.mass || ""}
+                                                onChange={handleEditStarInputChange}
+                                                placeholder="Mass"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="radius"
+                                                value={editedStarData.radius || ""}
+                                                onChange={handleEditStarInputChange}
+                                                placeholder="Radius"
+                                                required
+                                            />
+                                        </div>
+                                        <div className="mb-3">
+                                            <input
+                                                type="number"
+                                                className="form-control"
+                                                name="distanceFromEarth"
+                                                value={editedStarData.distanceFromEarth || ""}
+                                                onChange={handleEditStarInputChange}
+                                                placeholder="Distance from Earth"
+                                                required
+                                            />
+                                        </div>
+                                        <button onClick={() => handleSaveStar(star._id)} className="btn btn-sm btn-success me-2">Save</button>
+                                        <button onClick={() => setEditingStarId(null)} className="btn btn-sm btn-secondary">Cancel</button>
+                                    </div>
+                                ) : (
+                                    <div>
+                                        <h5 className="card-title">{star.name}</h5>
+                                        <p className="card-text">Type: {star.type}</p>
+                                        <p className="card-text">Mass: {star.mass}</p>
+                                        <p className="card-text">Radius: {star.radius}</p>
+                                        <p className="card-text">Distance from Earth: {star.distanceFromEarth}</p>
+                                        <button onClick={() => enableStarEdit(star)} className="btn btn-sm btn-primary me-2">Edit</button>
+                                        <button onClick={() => handleStarDelete(star._id)} className="btn btn-sm btn-danger">Delete</button>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     </div>
                 ))}

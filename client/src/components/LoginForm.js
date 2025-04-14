@@ -26,29 +26,31 @@ const LoginForm = ({ setLoggedInUser }) => {
     };
 
     return (
-        <div className="container">
-            <h2>Admin Login</h2>
+        <div className="container mt-5">
+            <h2 className="mb-4">Admin Login</h2>
             <form onSubmit={handleLogin}>
-                <div>
-                    <label>Username:</label>
+                <div className="mb-3">
+                    <label className="form-label">Username:</label>
                     <input
                         type="text"
+                        className="form-control"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                 </div>
-                <div>
-                    <label>Password:</label>
+                <div className="mb-3">
+                    <label className="form-label">Password:</label>
                     <input
                         type="password"
+                        className="form-control"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
                     />
                 </div>
-                {error && <p style={{ color: "red" }}>{error}</p>}
-                <button type="submit">Login</button>
+                {error && <p className="text-danger">{error}</p>}
+                <button type="submit" className="btn btn-primary">Login</button>
             </form>
         </div>
     );
